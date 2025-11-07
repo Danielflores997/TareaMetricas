@@ -23,7 +23,7 @@ namespace BadCalcVeryBad
         private double x { get; set; }
         private double y { get; set; }
         private string op { get; set; }
-        private static Random r { get; set; } = new Random();
+        private static readonly Random r = new Random();
         private object any { get; set; }
 
         public ShoddyCalc() { x = 0; y = 0; op = ""; any = null; }
