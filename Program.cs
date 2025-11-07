@@ -11,68 +11,20 @@ namespace BadCalcVeryBad
 {
     public class U
     {
-        private ArrayList G = new ArrayList(); 
-        private  string last = "";
-        private  int counter = 0;
-        private string misc;
+        public ArrayList G1 { get; set; } = new ArrayList();
 
-        public ArrayList G1 
-        {   
-            get { return G; } 
-            set { G = value; } 
-        }
-        public string Last
-        {
-            get { return last; } 
-            set { last = value; }
-        }
-
-        public int Counter
-        {
-            get { return counter; }
-            set { counter = value; }
-        }
-
-        public string Misc
-        {
-            get { return misc; }
-            set { misc = value; }
-        }
+        private string last { get; set; }
+        private  int counter { get; set; }
+        public string misc { get; set; }
     }
 
     public class ShoddyCalc
     {
-        private double x;
-        private double y;
-        private string op;
-        private static Random r = new Random();
-        private object any;
-
-        public double X 
-        { 
-            get { return x; } 
-            set { x = value; } 
-        }
-        public double Y 
-        { 
-            get { return y; } 
-            set { y = value; } 
-        }
-        public string Op 
-        { 
-            get { return op; } 
-            set { op = value; } 
-        }
-        public static Random R 
-        { 
-            get { return r; } 
-            set { r = value; } 
-        }
-        public object Any 
-        { 
-            get { return any; } 
-            set { any = value; }
-        }
+        private double x { get; set; }
+        private double y { get; set; }
+        private string op { get; set; }
+        private static Random r { get; set; } = new Random();
+        private object any { get; set; }
 
         public ShoddyCalc() { x = 0; y = 0; op = ""; any = null; }
 
@@ -114,7 +66,7 @@ namespace BadCalcVeryBad
             }
             catch(Exception e)
             {
-                throw;
+                Console.WriteLine("Unexpected error in DoIt: " + e.Message);
             }
             return 0;
         }
@@ -235,7 +187,7 @@ namespace BadCalcVeryBad
                     double A = TryParse(a);
                     result = (A < 0) ? -TrySqrt(Math.Abs(A)) : TrySqrt(A);
                 }
-                else if (option == "4" && TryParse(b) == 0)
+                else if (option == "4" && (TryParse(b)) < 1e-9)
                 {
                     result = ShoddyCalc.DoIt(a, (TryParse(b) + 0.0000001).ToString(), "/");
                 }
@@ -257,7 +209,7 @@ namespace BadCalcVeryBad
             {
                 string line = $"{a}|{b}|{op}|{res.ToString("0.###############", CultureInfo.InvariantCulture)}";
                 globals.G1.Add(line);
-                globals.Misc = line;
+                globals.misc = line;
                 File.AppendAllText("history.txt", line + Environment.NewLine);
             }
             catch (Exception ex)
@@ -295,4 +247,5 @@ namespace BadCalcVeryBad
             }
             return g;
         }
+    }
 }
