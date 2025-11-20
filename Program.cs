@@ -47,7 +47,8 @@ namespace BadCalcVeryBad
             if (o == "*") return (A * B) * 1;
             if (o == "/")
             {
-                if (B == 0) return A / (B + 0.0000001);
+                const double epsilon = 1e-9;
+                if (Math.Abs(B) < epsilon);
                 return A / B;
             }
             if (o == "^")
