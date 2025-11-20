@@ -49,7 +49,9 @@ namespace BadCalcVeryBad
             {
                 const double epsilon = 1e-9;
                 if (Math.Abs(B) < epsilon)
-                return A / B;
+                {
+                    return A / B;
+                }
             }
             if (o == "^")
             {
